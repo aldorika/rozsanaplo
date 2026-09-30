@@ -221,7 +221,7 @@ body{
   flex:1; font-size:10.5px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase;
   color:#9a6fbe; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 }
-.mappa-fej .db{ flex:none; font-size:10px; color:#b79ccb; }
+.mappa-fej .db{ flex:none; font-size:10.5px; color:var(--halk); }
 .mappa > .mappa-tartalom{ display:none; padding-left:8px; }
 /* almappa: halkabb, kisebb betű, hogy a szülő mappa maradjon a főcím */
 .mappa.almappa > .mappa-fej{ padding:5px 10px 5px 4px; }
@@ -385,7 +385,7 @@ body{
   -webkit-user-select:text; user-select:text;
 }
 .gyak-url:empty::before{ content:"illeszd be ide a videó linkjét…"; color:#c9aed4; font-style:italic; }
-.gyak-torolG{ cursor:pointer; color:#c9aed4; }
+.gyak-torolG{ cursor:pointer; color:var(--halkabb); }
 .gyak-torolG:hover{ color:var(--kijelol); }
 /* a törlés halvány és elkülönül, hogy ne lehessen véletlenül eltalálni */
 .torol-tetel{
@@ -582,8 +582,8 @@ body{
 
 /* még le nem töltött forrás */
 .forras-hianyzik{
-  color:#b79ccb; font-style:italic;
-  border-bottom:1px dotted rgba(183,156,203,.6);
+  color:var(--halk); font-style:italic;
+  border-bottom:1px dotted rgba(138,111,140,.6);
 }
 .forras-hianyzik::before{ content:"○ "; opacity:.7; }
 
@@ -725,11 +725,11 @@ body{
   margin:0; padding:11px 14px; cursor:pointer; font-size:17px;
 }
 #tartalom section.csukhato > h2:hover{ background:rgba(255,255,255,.55); }
-#tartalom section.csukhato > h2::after{
-  content:"▸"; float:right; color:#b58ad0; font-size:14px; font-weight:400;
+#tartalom section.csukhato > h2::before{
+  content:"▸"; color:#a97ec6; font-size:13px; font-weight:400; width:14px; margin-right:6px;
   display:inline-block; transition:transform .16s ease;
 }
-#tartalom section.csukhato.nyitva > h2::after{ transform:rotate(90deg); }
+#tartalom section.csukhato.nyitva > h2::before{ transform:rotate(90deg); }
 #tartalom section.csukhato > .szakasz{ display:none; padding:0 14px 12px; }
 #tartalom section.csukhato.nyitva > .szakasz{ display:block; }
 
@@ -738,7 +738,7 @@ body{
   display:block; float:left; width:76px; height:76px; object-fit:contain;
   margin:2px 14px 4px 0;
 }
-.alista li.nyilo > .fej::after{ position:relative; z-index:1; }
+.alista li.nyilo > .fej::before{ position:relative; z-index:1; }
 .alista li.nyilo > .fej{ overflow:hidden; }
 .alista li.nyilo > .test{ clear:both; }
 
@@ -746,11 +746,11 @@ body{
 .alista li.nyilo{ padding:0; overflow:hidden; }
 .alista li.nyilo > .fej{ display:block; cursor:pointer; padding:7px 12px 8px 14px; }
 .alista li.nyilo > .fej:hover{ background:rgba(255,255,255,.55); }
-.alista li.nyilo > .fej::after{
-  content:"▸"; float:right; color:#b58ad0; font-size:12px;
-  display:inline-block; transition:transform .16s ease; margin-left:8px;
+.alista li.nyilo > .fej::before{
+  content:"▸"; color:#a97ec6; font-size:12px; width:12px; margin-right:6px;
+  display:inline-block; transition:transform .16s ease;
 }
-.alista li.nyilo.nyitva > .fej::after{ transform:rotate(90deg); }
+.alista li.nyilo.nyitva > .fej::before{ transform:rotate(90deg); }
 .alista li.nyilo > .test{ display:none; padding:2px 14px 10px 14px; border-top:1px solid rgba(164,140,255,.22); }
 .alista li.nyilo.nyitva > .test{ display:block; }
 .alista li.nyilo > .test p{ margin:8px 0 0; }
@@ -776,7 +776,7 @@ body{
   display:block; cursor:pointer; padding:10px; text-align:center;
 }
 #tartalom .kvizracs li.nyilo > .fej:hover{ background:rgba(255,255,255,.6); }
-#tartalom .kvizracs li.nyilo > .fej::after{ content:none; }
+#tartalom .kvizracs li.nyilo > .fej::before{ content:none; }
 #tartalom .kvizracs li.nyilo > .fej img{
   width:100%; height:auto; max-height:none; object-fit:contain; border-radius:10px; display:block;
 }
@@ -1449,6 +1449,21 @@ table.orarend td:empty{ background:rgba(255,255,255,.18); }
 .mr-adatok b{ color:#8a5fa8; font-size:12.5px; }
 
 /* — beállítás — */
+/* nyugodt szövegmező: a kollázs a lap szélein marad, a szöveg mögött lágy pasztell fátyol */
+.lap.nyugodt-hatter #vazlatGorgo, .lap.nyugodt-hatter .kerdesek, .lap.nyugodt-hatter #gyakorlatokNezet{
+  background:linear-gradient(90deg, transparent 0, rgba(252,243,250,.82) 28px, rgba(247,240,252,.82) calc(100% - 44px), transparent 100%);
+}
+.mr-beallit-csukva{ margin-top:10px; }
+.mr-beallit-csukva > summary{
+  list-style:none; cursor:pointer; font-size:12.5px; color:var(--halk); width:max-content;
+}
+.mr-beallit-csukva > summary::-webkit-details-marker{ display:none; }
+.mr-beallit-csukva > summary::before{
+  content:"▸"; display:inline-block; width:12px; margin-right:6px; color:#a97ec6;
+  transition:transform .16s ease;
+}
+.mr-beallit-csukva[open] > summary::before{ transform:rotate(90deg); }
+.mr-beallit-csukva[open] > .mr-beallit{ margin-top:8px; }
 .mr-beallit{ display:flex; align-items:center; gap:8px; flex-wrap:wrap;
   font-size:11.5px; color:var(--halk); margin-top:11px;
   padding-top:10px; border-top:1px solid rgba(120,80,140,.13); }
@@ -1528,8 +1543,8 @@ table.orarend td:empty{ background:rgba(255,255,255,.18); }
 .mr-also{ display:flex; align-items:center; gap:9px; margin-top:2px; font-size:11.5px; color:#b193c4; }
 .mr-modul{ font-weight:600; color:#a486b8; }
 .mr-kihagy{
-  flex:none; cursor:pointer; color:#c9aed4; font-size:12px; padding:1px 7px;
-  border-radius:6px; opacity:.4; transition:opacity .12s ease, background .12s ease;
+  flex:none; cursor:pointer; color:var(--halkabb); font-size:12px; padding:1px 7px;
+  border-radius:6px; transition:opacity .12s ease, background .12s ease;
 }
 .mr-kihagy:hover{ opacity:1; background:rgba(255,90,164,.14); color:var(--kijelol); }
 
@@ -1583,10 +1598,11 @@ table.orarend td:empty{ background:rgba(255,255,255,.18); }
 .gl-ures .alsor{ font-size:13px; color:var(--halk); }
 /* ===================== FELHŐ: belépő és állapotjelző ===================== */
 #felhoAllapot{
-  flex:none; padding:0 18px; font-size:10.5px; color:#b79ccb; letter-spacing:.3px;
+  flex:none; padding:0 18px; font-size:11px; color:var(--halk); letter-spacing:.3px;
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
 #felhoAllapot[data-allapot="hiba"]{ color:#c98aa8; }
+#felhoAllapot{ cursor:pointer; }
 
 #felhoBelepo{
   position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center;
@@ -2106,7 +2122,8 @@ let haladas = {};        /* naponta: hány kártya ment és mennyi időt töltö
 let nyitottMappak = [];
 let aktivFul = "vazlat";          /* vazlat | kerdesek */
 let gyakorlasSor = null;          /* gyakorlás közben: {tetelek:[], mutato, valaszLatszik, jo, rossz} */
-let gyakorlatokNyitva = false;    /* a gyakorlat-áttekintő lap van nyitva */
+let gyakorlatokNyitva = false;
+let mrBeallitNyitva = false;      /* a menetrend beállításai lenyitva */    /* a gyakorlat-áttekintő lap van nyitva */
 let gyakKeszLatszik = false;      /* az áttekintőn a „Már kész" rész ki van nyitva */
 
 /* ismétlés lépcsői ezredmásodpercben: aznap, +1 nap, +3 nap, +1 hét, +1 hónap, +3 hónap */
@@ -2511,11 +2528,11 @@ function rajzolLista(){
     e.className = "esedekes";
     e.onclick = () => inditGyakorlas(null);
     const fo = document.createElement("div");
-    fo.className = "fo"; fo.textContent = "Ma ismételni — " + db + " kérdés";
+    fo.className = "fo"; fo.textContent = "Ma: " + Math.min(db, ISMETLES_ADAG) + " kártya";
+    e.title = db + " kérdés esedékes összesen";
     const alsor = document.createElement("div");
     alsor.className = "alsor";
-    alsor.textContent = db > ISMETLES_ADAG ? ("kattints — " + ISMETLES_ADAG + " kártyás adagokban megy")
-                                           : "kattints a gyakorlás indításához";
+    alsor.textContent = db > ISMETLES_ADAG ? "egy adag, utána jöhet a következő" : "indulhat az ismétlés";
     e.appendChild(fo); e.appendChild(alsor);
     doboz.appendChild(e);
   }
@@ -2533,7 +2550,7 @@ function rajzolLista(){
     fo.textContent = gyDb === 1 ? "1 gyakorlat vár rád" : gyDb + " gyakorlat vár rád";
     const alsor = document.createElement("div");
     alsor.className = "alsor";
-    alsor.textContent = "kattints — mind egy lapon";
+    alsor.textContent = "mind egy lapon";
     e.appendChild(fo); e.appendChild(alsor);
     doboz.appendChild(e);
   }
@@ -2650,7 +2667,7 @@ function leckeElem(l){
   const kdb = l.kerdesek.filter(k => !k.tukor).length;
   const gyoker = gyokerMappaNeve(l);
   const lesznekKerdesek = gyoker === "Tananyag" || gyoker === "Játék";
-  also.textContent = kdb ? (kdb + " kérdés" + (esed ? " · " + esed + " esedékes" : ""))
+  also.textContent = kdb ? (kdb + " kérdés")
                          : (lesznekKerdesek ? "nincs kérdés" : "");
   t.appendChild(also);
 
@@ -3039,7 +3056,7 @@ function rajzolGyakorlatLista(){
     kapcs.textContent = "Már kész · " + keszDb;
     kapcs.title = "a kipipált gyakorlatok — innen vissza is vonhatod";
     const ny = document.createElement("span");
-    ny.className = "nyil"; ny.textContent = "›";
+    ny.className = "nyil"; ny.textContent = "▸";
     kapcs.appendChild(ny);
     kapcs.onclick = () => { gyakKeszLatszik = !gyakKeszLatszik; rajzolGyakorlatLista(); };
     fej.appendChild(kapcs);
@@ -3086,7 +3103,7 @@ function gyakorlatCsoport(sor, keszE){
   fej.title = "ugrás a leckére";
   fej.textContent = sor.lecke.cim.trim() || "Cím nélküli lecke";
   const nyil = document.createElement("span");
-  nyil.className = "nyil"; nyil.textContent = "›";
+  nyil.className = "nyil"; nyil.textContent = "▸";
   fej.appendChild(nyil);
   fej.onclick = () => { gyakorlatokNyitva = false; leckereUgrik(sor.lecke.id); };
   cs.appendChild(fej);
@@ -3409,8 +3426,7 @@ function rajzolMenetrend(){
   const ad = el("mr-adatok", o);
   ad.innerHTML =
     "<span><b>" + kesz.length + " / " + osszes.length + "</b> tétel kész</span>" +
-    "<span>hátra: <b>" + idoSzoveg(hatraPerc) + "</b></span>" +
-    "<span><b>" + terv.napok.filter(n=>n.perc>0).length + "</b> tanulónap</span>" +
+    "<span>még <b>" + terv.napok.filter(n=>n.perc>0).length + "</b> tanulónap</span>" +
     (terv.tempo.napok >= 2
       ? "<span>a tempód: <b>" + (terv.tempo.szorzo <= 1
           ? "a becslés " + terv.tempo.szorzo.toFixed(2).replace(".",",") + "-szerese, gyorsabb vagy"
@@ -3418,7 +3434,15 @@ function rajzolMenetrend(){
       : "<span>a tempódat 2 mért nap után számolom</span>");
 
   /* — beállítás — */
-  const b = el("mr-beallit", o);
+  const bBeall = document.createElement("details");
+  bBeall.className = "mr-beallit-csukva";
+  bBeall.open = mrBeallitNyitva;
+  bBeall.ontoggle = () => { mrBeallitNyitva = bBeall.open; };
+  const bCim = document.createElement("summary");
+  bCim.textContent = "beállítások";
+  bBeall.appendChild(bCim);
+  o.appendChild(bBeall);
+  const b = el("mr-beallit", bBeall);
   b.appendChild(document.createTextNode("napi keret:"));
   const mezo = document.createElement("input");
   mezo.type = "number"; mezo.min = "15"; mezo.max = "600"; mezo.step = "15";
@@ -3453,7 +3477,7 @@ function rajzolMenetrend(){
   if (regebbiKesz.length){
     const kd = el("mr-nap mr-mar-kesz" + (mrKeszNyitva ? " nyitva" : ""), doboz);
     const kf = el("mr-nap-fej", kd);
-    el("mr-nap-nyil", kf, "›");
+    el("mr-nap-nyil", kf, "▸");
     el("mr-nap-datum", kf, "Már kész");
     el("mr-nap-perc", kf, regebbiKesz.length + " tétel ✓");
     kf.onclick = () => { mrKeszNyitva = !mrKeszNyitva; rajzolMenetrend(); };
@@ -3473,7 +3497,7 @@ function rajzolMenetrend(){
     const d = el("mr-nap" + (nap.maiNap ? " ma" : "") + (nyitva ? " nyitva" : ""), doboz);
 
     const fej = el("mr-nap-fej", d);
-    el("mr-nap-nyil", fej, "›");
+    el("mr-nap-nyil", fej, "▸");
     const dt = nap.datum;
     el("mr-nap-datum", fej,
        MR_HONAP[dt.getMonth()] + " " + dt.getDate() + ". " + MR_NAPNEV[dt.getDay()]);
@@ -4062,17 +4086,12 @@ function naplozHaladast(ment){
   utolsoValaszIdeje = most_;
 }
 
-function szeriaHossza(){
-  const d = new Date();
+/* hány napon tanultál összesen — nem kell egymás után */
+function osszesNap(){
   let db = 0;
-  for (let i = 0; i < 400; i++){
-    const k = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" +
-              String(d.getDate()).padStart(2, "0");
+  for (const k in haladas){
     const h = haladas[k];
-    const van = !!h && (h.ment > 0 || h.nyitva);
-    if (van) db++;
-    else if (i > 0) break;          /* a mai nap még lehet üres, az nem szakítja meg */
-    d.setDate(d.getDate() - 1);
+    if (/^\d{4}-\d{2}-\d{2}$/.test(k) && h && (h.ment > 0 || h.nyitva || h.mp > 0)) db++;
   }
   return db;
 }
@@ -4101,7 +4120,7 @@ function rajzolHaladast(){
   const doboz = $("haladas");
   if (!doboz) return;
   const ma = haladas[maiKulcs()] || { ment: 0, mp: 0 };
-  const szeria = szeriaHossza();
+  const napok = osszesNap();
   const ossz = osszesPerc();
 
   doboz.innerHTML = "";
@@ -4114,7 +4133,7 @@ function rajzolHaladast(){
 
   const fo = document.createElement("div");
   fo.className = "fo";
-  fo.textContent = szeria;                /* csak a szám — a virág mondja meg, miről van szó */
+  fo.textContent = napok + " nap";
   jobb.appendChild(fo);
 
   const reszek = [];
@@ -4450,7 +4469,7 @@ function napiKoszones(){
   haladas.utolsoKoszones = ma;
   mentAzonnal();
 
-  const szeria = szeriaHossza();
+  const napok = osszesNap();
   const f = document.createElement("div");
   f.className = "koszones";
   const kep = napiVirag();
@@ -4461,9 +4480,8 @@ function napiKoszones(){
       '<div class="koszones-alcim"></div>' +
     '</div>';
   f.querySelector(".koszones-fo").textContent =
-    szeria >= 2 ? szeria + " napja sorozatban" : (szeria === 1 ? "Tegnap is tanultál" : "Szia!");
-  f.querySelector(".koszones-alcim").textContent =
-    szeria >= 2 ? "Megvan a mai is." : "Ma is megvolt — holnap kettő lesz.";
+    napok >= 2 ? "Ez a " + napok + ". napod" : "Szia!";
+  f.querySelector(".koszones-alcim").textContent = "Örülök, hogy itt vagy.";
   document.body.appendChild(f);
   f.onclick = () => f.remove();
   setTimeout(() => { if (f.parentNode) f.remove(); }, 6000);
@@ -5916,6 +5934,12 @@ function kepetCserel(el){
   if (attr === "src") el.removeAttribute("src"); else el.setAttribute("href", "");
   kepUrl(v).then(u => { if (el.getAttribute("data-kep") === v) el.setAttribute(attr, u); }).catch(() => {});
 }
+/* amit nem sikerült letölteni (pl. még nem volt fent), azt később újra megpróbáljuk */
+function kepekUjra(){
+  document.querySelectorAll('img[data-kep]:not([src]), image[data-kep][href=""]').forEach(el => {
+    el.setAttribute(el.tagName.toLowerCase() === "img" ? "src" : "href", el.getAttribute("data-kep"));
+  });
+}
 function kepeketKeres(gyoker){
   if (gyoker.nodeType !== 1) return;
   if (gyoker.matches && gyoker.matches('img[src^="kepek/"], image[href^="kepek/"]')) kepetCserel(gyoker);
@@ -5940,6 +5964,8 @@ function indul(){
   if (sav && !document.getElementById("felhoAllapot")){
     const el = document.createElement("div");
     el.id = "felhoAllapot";
+    /* ha nincs belépés, a feliratra kattintva bármikor be lehet lépni */
+    el.onclick = () => { if (!mm) belepoMutat(); else szinkron(); };
     sav.appendChild(el);
   }
   if (!mac){
@@ -5970,7 +5996,8 @@ function indul(){
 }
 
 setInterval(() => { if (!document.hidden) szinkron(); }, 30000);
-document.addEventListener("visibilitychange", () => { szinkron(); });
+document.addEventListener("visibilitychange", () => { szinkron(); if (!mac && !document.hidden) kepekUjra(); });
+if (!mac) setInterval(() => { if (!document.hidden) kepekUjra(); }, 60000);
 window.felhoSzinkron = szinkron;
 
 indul();
