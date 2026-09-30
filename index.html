@@ -221,7 +221,7 @@ body{
   flex:1; font-size:10.5px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase;
   color:#9a6fbe; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 }
-.mappa-fej .db{ flex:none; font-size:10.5px; color:var(--halk); }
+.mappa-fej .db{ display:none; }
 .mappa > .mappa-tartalom{ display:none; padding-left:8px; }
 /* almappa: halkabb, kisebb betű, hogy a szülő mappa maradjon a főcím */
 .mappa.almappa > .mappa-fej{ padding:5px 10px 5px 4px; }
@@ -1450,8 +1450,11 @@ table.orarend td:empty{ background:rgba(255,255,255,.18); }
 
 /* — beállítás — */
 /* nyugodt szövegmező: a kollázs a lap szélein marad, a szöveg mögött lágy pasztell fátyol */
-.lap.nyugodt-hatter #vazlatGorgo, .lap.nyugodt-hatter .kerdesek, .lap.nyugodt-hatter #gyakorlatokNezet{
-  background:linear-gradient(90deg, transparent 0, rgba(252,243,250,.82) 28px, rgba(247,240,252,.82) calc(100% - 44px), transparent 100%);
+.lap.nyugodt-hatter .iras::before{
+  content:""; position:absolute; z-index:-1; pointer-events:none;
+  inset:70px 34px 18px 22px; border-radius:48px;
+  background:rgba(251,243,250,.58);
+  filter:blur(26px);
 }
 .mr-beallit-csukva{ margin-top:10px; }
 .mr-beallit-csukva > summary{
@@ -1643,6 +1646,7 @@ table.orarend td:empty{ background:rgba(255,255,255,.18); }
   /* a lista és az írás egymás helyett látszik, nem egymás mellett */
   .oldalsav{ width:100%; padding:calc(env(safe-area-inset-top) + 14px) 0 calc(env(safe-area-inset-bottom) + 10px); border-right:none; transition:none; }
   .lap:not(.osszecsukott) .iras{ display:none; }
+  .lap.nyugodt-hatter .iras::before{ inset:60px 6px 10px 6px; border-radius:30px; filter:blur(18px); }
   .lap.osszecsukott .oldalsav{ display:none; }
 
   .eszkozsor{ padding:2px 16px 10px; }
@@ -1937,7 +1941,7 @@ table.orarend td:empty{ background:rgba(255,255,255,.18); }
   </defs>
 </svg>
 <div class="kulso">
-  <div class="lap" id="lap">
+  <div class="lap nyugodt-hatter" id="lap">
 
     <div class="vilag" id="vilag">
       <div class="folt f1"></div><div class="folt f2"></div>
